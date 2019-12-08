@@ -15,7 +15,17 @@ public class FruitResourceTest {
           .when().get("/fruits")
           .then()
              .statusCode(200)
-             .body(is("[]"));
+             .body(is("[{\"description\":\"this is an orange\",\"name\":\"orange\"}]"));
+    }
+
+    @Test
+    public void testPostFruitsEndpoint() {
+        given()
+            .header("Content-Type", "application/json")
+            .and()
+            .body("{\"name\": \"orange\", \"description\": \"this is an orange\"}")
+            .when().post("/fruits")
+            .then().statusCode(200);
     }
 
 }
