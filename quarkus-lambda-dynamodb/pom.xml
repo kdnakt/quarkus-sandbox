@@ -138,6 +138,9 @@
                                 </goals>
                                 <configuration>
                                     <enableHttpUrlHandler>true</enableHttpUrlHandler>
+                                    <additionalBuildArgs>
+                                        <arg>--allow-incomplete-classpath</arg>
+                                    </additionalBuildArgs>
                                 </configuration>
                             </execution>
                         </executions>
