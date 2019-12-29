@@ -1,0 +1,2 @@
+#!/bin/sh
+./runner -Djavax.net.ssl.trustStore=./cacerts -Djava.library.path=./amd64

@@ -7,11 +7,30 @@
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
     <files>
-      <file>
-	<source>${project.build.directory}${file.separator}${artifactId}-${version}-runner</source>
-	<outputDirectory>/</outputDirectory>
-	<destName>bootstrap</destName>
-	<fileMode>755</fileMode>
-      </file>
+        <file>
+            <source>${project.build.directory}${file.separator}${artifactId}-${version}-runner</source>
+            <outputDirectory>/</outputDirectory>
+            <destName>runner</destName>
+            <fileMode>755</fileMode>
+        </file>
+        <file>
+            <source>${JAVA_HOME}/lib/security/cacerts</source>
+            <outputDirectory>/</outputDirectory>
+            <destName>cacerts</destName>
+            <fileMode>644</fileMode>
+        </file>
+        <file>
+            <source>${project.basedir}${file.separator}bootstrap</source>
+            <outputDirectory>/</outputDirectory>
+            <destName>bootstrap</destName>
+            <fileMode>755</fileMode>
+        </file>
     </files>
+    <fileSets>
+        <fileSet>
+            <directory>${project.basedir}${file.separator}amd64</directory>
+            <outputDirectory>/</outputDirectory>
+            <fileMode>755</fileMode>
+        </fileSet>
+    </fileSets>
 </assembly>
