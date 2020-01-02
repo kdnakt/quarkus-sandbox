@@ -10,7 +10,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 public class FruitResourceTest {
 
     @Test
-    public void testHelloEndpoint() {
+    public void testFruitsEndpoint() {
         given()
           .when().get("/fruits")
           .then()
