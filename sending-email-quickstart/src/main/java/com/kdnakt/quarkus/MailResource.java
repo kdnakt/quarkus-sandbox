@@ -16,13 +16,13 @@ import io.quarkus.mailer.ReactiveMailer;
 public class MailResource {
 
     @ConfigProperty(name = "from")
-    private String to;
+    String to;
 
     @Inject
-    private Mailer mailer;
+    Mailer mailer;
 
     @Inject
-    private ReactiveMailer reactiveMailer;
+    ReactiveMailer reactiveMailer;
 
     @GET
     @Path("/simple")
