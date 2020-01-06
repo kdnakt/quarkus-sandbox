@@ -1,5 +1,7 @@
 package com.kdnakt.quarkus;
 
+import java.util.concurrent.CompletionStage;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -11,24 +13,23 @@ import javax.ws.rs.core.Response;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import io.quarkus.mailer.Mail;
-import io.quarkus.mailer.Mailer;
+import io.quarkus.mailer.ReactiveMailer;
 
-@Path("/simple")
+@Path("/async")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class MailResource {
+public class AsyncMailResource {
 
     @ConfigProperty(name = "from")
     String to;
 
     @Inject
-    Mailer mailer;
+    ReactiveMailer reactiveMailer;
 
     @GET
-    public Response sendASimpleEmail() {
-        System.out.println("simple!!");
-        mailer.send(Mail.withText(to, "A simple email from quarkus", "This is my body"));
-        return Response.accepted().build();
+    public CompletionStage<Response> sendASimpleEmailAsync() {
+        System.out.println("async!!");
+        return reactiveMailer.send(Mail.withText(to, "A reactive email from quarkus", "This is my body"))
+                .thenApply(x -> Response.accepted().build());
     }
-
 }
