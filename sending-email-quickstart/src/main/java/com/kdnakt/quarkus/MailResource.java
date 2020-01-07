@@ -28,7 +28,7 @@ public class MailResource {
     public Response sendASimpleEmail() {
         System.out.println("simple!!");
         mailer.send(Mail.withText(to, "A simple email from quarkus", "This is my body"));
-        return Response.accepted().build();
+        return Response.accepted("OK").build();
     }
 
 }
