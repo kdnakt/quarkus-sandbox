@@ -3,34 +3,16 @@ package com.kdnakt.quarkus.config;
 import io.quarkus.arc.config.ConfigProperties;
 import java.util.Optional;
 
-@ConfigProperties(prefix = "greeting") 
-public class GreetingConfig {
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
-    private String message;
-    private String suffix = "!"; 
-    private Optional<String> name;
+@ConfigProperties(prefix = "greeting")
+public interface GreetingConfig {
 
-    public String getMessage() {
-        return message;
-    }
+    @ConfigProperty(name = "message")
+    String message();
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+    @ConfigProperty(defaultValue = "!")
+    String getSuffix();
 
-    public String getSuffix() {
-        return suffix;
-    }
-
-    public void setSuffix(String suffix) {
-        this.suffix = suffix;
-    }
-
-    public Optional<String> getName() {
-        return name;
-    }
-
-    public void setName(Optional<String> name) {
-        this.name = name;
-    }
+    Optional<String> getName();
 }
