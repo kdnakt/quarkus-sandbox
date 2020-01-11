@@ -1,0 +1,12 @@
+greeting:
+  message: hello
+  name: quarkus
+  suffix: "!!"
+
+quarkus:
+  http:
+    port: 9090
+"%dev":
+  quarkus:
+    http:
+      port: 8183
