@@ -39,7 +39,7 @@ public class BookResource {
         }
     }
 
-    private class Result {
+    public class Result {
 
         Result(String message) {
             this.success = true;
