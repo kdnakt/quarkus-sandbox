@@ -1,6 +1,7 @@
 package com.kdnakt.quarkus.restclient;
 
 import java.util.Set;
+import java.util.concurrent.CompletionStage;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -23,5 +24,12 @@ public class CountriesResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Set<Country> name(@PathParam String name) {
         return countriesService.getByName(name);
+    }
+
+    @GET
+    @Path("/name-async/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public CompletionStage<Set<Country>> nameAsync(@PathParam String name) {
+        return countriesService.getByNameAsync(name);
     }
 }
