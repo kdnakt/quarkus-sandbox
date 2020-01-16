@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.concurrent.CompletionStage;
 
 @Path("/v2")
-@RegisterRestClient
+@RegisterRestClient(configKey="country-api")
 public interface CountriesService {
 
     @GET
