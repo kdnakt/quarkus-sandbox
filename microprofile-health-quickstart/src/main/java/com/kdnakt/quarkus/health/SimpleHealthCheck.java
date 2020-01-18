@@ -10,8 +10,15 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class SimpleHealthCheck implements HealthCheck {
 
+    boolean status = false;
+
     @Override
     public HealthCheckResponse call() {
-        return HealthCheckResponse.up("Simple health check");
+        status = !status;
+        if (status) {
+            return HealthCheckResponse.up("Simple health check");
+        } else {
+            return HealthCheckResponse.down("Simple health check");
+        }
     }
 }
