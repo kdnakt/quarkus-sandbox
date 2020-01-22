@@ -9,6 +9,7 @@ import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.json.JsonString;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -32,7 +33,7 @@ public class TokenSecuredResource {
 
     @Inject
     @Claim(standard = Claims.birthdate)
-    Optional<String> birthdate;
+    Optional<JsonString> birthdate;
 
     @GET()
     @Path("permit-all")
@@ -91,7 +92,7 @@ public class TokenSecuredResource {
 
         // If the JWT contains a birthdate claim, use the day of the month as a pick
         if (birthdate.isPresent()) {
-            String bdayString = birthdate.get();
+            String bdayString = birthdate.get().getString();
             LocalDate bday = LocalDate.parse(bdayString);
             numbers.add(bday.getDayOfMonth());
             remaining --;
