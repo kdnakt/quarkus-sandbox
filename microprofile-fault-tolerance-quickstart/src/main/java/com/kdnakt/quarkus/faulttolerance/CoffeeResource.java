@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.eclipse.microprofile.faulttolerance.Retry;
 import org.jboss.logging.Logger;
 
 @Path("/coffee")
@@ -23,6 +24,7 @@ public class CoffeeResource {
     private AtomicLong counter = new AtomicLong(0);
 
     @GET
+    @Retry(maxRetries = 4)
     public List<Coffee> coffees() {
         final Long invocationNumber = counter.getAndIncrement();
 
