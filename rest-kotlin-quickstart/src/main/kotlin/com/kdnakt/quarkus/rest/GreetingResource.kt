@@ -9,6 +9,6 @@ import javax.ws.rs.core.MediaType
 class GreetingResource {
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    fun hello() = "hello kotlin!"
+    @Produces(MediaType.APPLICATION_JSON)
+    fun hello() = Greeting("hello kotlin!")
 }
