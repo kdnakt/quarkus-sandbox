@@ -1,10 +1,14 @@
 package com.kdnakt.quarkus.kafka;
 
 import io.smallrye.reactive.messaging.annotations.Channel;
+import io.smallrye.reactive.messaging.annotations.Emitter;
+
 import org.reactivestreams.Publisher;
 
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -27,5 +31,15 @@ public class PriceResource {
     @SseElementType("text/plain")
     public Publisher<Double> stream() {
         return prices;
+    }
+
+    @Inject
+    @Channel("price-create")
+    Emitter<Double> priceEmitter;
+
+    @POST
+    @Consumes(MediaType.TEXT_PLAIN)
+    public void addPrice(Double price) {
+        priceEmitter.send(price);
     }
 }
