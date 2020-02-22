@@ -16,6 +16,11 @@
     <div class="row">
     <p class="col-md-12">The last price is <strong><span id="content">N/A</span>&nbsp;&euro;</strong>.</p>
     </div>
+    <div class="row">
+    <p class="col-md-12">Send a price and double it!</p>
+    <input type="number" id="price" value="2.0"/>
+    <button id="send-price">Send a price</button>
+    </div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -24,5 +29,24 @@
     source.onmessage = function (event) {
         document.getElementById("content").innerHTML = event.data;
     };
+    $("#send-price").click(function(e) {
+        e.preventDefault();
+        var price = $("#price").val();
+        console.log(price);
+        $.ajax({
+            url: "/prices",
+            method: "POST",
+            contentType: "text/plain",
+            data: price,
+        }).then(function(data, status, xhr) {
+            console.log(data);
+            console.log(status);
+            alert(status);
+        }, function(xhr, status, err) {
+            console.log(status);
+            console.log(err);
+            alert(err);
+        });
+    });
 </script>
 </html>
