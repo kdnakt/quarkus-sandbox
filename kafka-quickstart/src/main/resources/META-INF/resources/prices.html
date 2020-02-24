@@ -39,13 +39,11 @@
             contentType: "text/plain",
             data: price,
         }).then(function(data, status, xhr) {
-            console.log(data);
             console.log(status);
-            alert(status);
+            console.log(data);
         }, function(xhr, status, err) {
             console.log(status);
             console.log(err);
-            alert(err);
         });
     });
 </script>
