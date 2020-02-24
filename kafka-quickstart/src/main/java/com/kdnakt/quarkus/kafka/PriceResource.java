@@ -34,7 +34,7 @@ public class PriceResource {
     }
 
     @Inject
-    @Channel("price-create")
+    @Channel("my-data-stream")
     Emitter<Double> priceEmitter;
 
     @POST

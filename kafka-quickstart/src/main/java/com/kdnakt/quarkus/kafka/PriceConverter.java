@@ -20,11 +20,4 @@ public class PriceConverter {
         return priceInUsd * CONVERSION_RATE;
     }
 
-    @Incoming("prices-create")
-    @Outgoing("my-data-stream")
-    @Broadcast
-    public double processCreated(double priceCreated) {
-        System.out.println("created " + priceCreated);
-        return priceCreated * 2.0;
-    }
 }
