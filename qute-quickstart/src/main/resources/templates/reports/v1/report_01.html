@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Report {now}</title>
+</head>
+
+<body>
+    <h1>Report {now}</h1>
+    {#for sample in samples}
+    <h2>{sample.name ?: 'Unknown'}</h2>
+    <p>
+        {#if sample.valid} {sample.data} {#else}
+        <strong>Invalid sample found</strong>. {/if}
+    </p>
+    {/for}
+</body>
+
+</html>
