@@ -4,9 +4,12 @@ import java.time.LocalDate;
 
 import javax.enterprise.context.ApplicationScoped;
 
+import io.quarkus.cache.CacheResult;
+
 @ApplicationScoped
 public class WeatherForecastService {
 
+    @CacheResult(cacheName = "weather-cache")
     public String getDailyForecast(LocalDate date, String city) {
         try {
             Thread.sleep(2000L);
