@@ -17,8 +17,8 @@
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
     <quarkus.platform.version>1.6.1.Final</quarkus.platform.version>
     <surefire-plugin.version>2.22.1</surefire-plugin.version>
-    <grpc.version>{grpc-version}</grpc.version>
-    <protoc.version>{protoc-version}</protoc.version>
+    <grpc.version>1.31.0</grpc.version>
+    <protoc.version>3.12.4</protoc.version>
     <os-maven-plugin-version>1.6.2</os-maven-plugin-version>
     <protobuf-maven-plugin-version>0.6.1</protobuf-maven-plugin-version>
   </properties>
