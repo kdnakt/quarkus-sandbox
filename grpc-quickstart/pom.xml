@@ -52,6 +52,11 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>3.8.0</version>
+    </dependency>
   </dependencies>
   <build>
     <extensions>
