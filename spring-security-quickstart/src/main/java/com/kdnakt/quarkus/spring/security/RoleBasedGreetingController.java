@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/role-based-greeting")
 public class RoleBasedGreetingController {
 
-    @PreAuthorize("hasRole('admin')")
+    @PreAuthorize("hasRole(@roles.ADMIN)")
     @GetMapping
     public String adminhello() {
         return "hello";
