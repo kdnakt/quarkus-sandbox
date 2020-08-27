@@ -1,4 +1,4 @@
-package com.kdnakt.quarkus.picocli;
+package com.kdnakt.quarkus.picocli.single;
 
 import picocli.CommandLine;
 
