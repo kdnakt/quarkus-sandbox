@@ -25,10 +25,11 @@ public class GreetingResource {
     }
 
     @GET
-    @Path("/{name}")
-    public String hello(@PathParam("name") String name) {
+    @Path("/{name}/{age}")
+    public String hello(@PathParam("name") String name,
+            @PathParam("age") int age) {
         return client.sayHello(
-                HelloRequest.newBuilder().setName(name).build()
+                HelloRequest.newBuilder().setName(name).setAge(age).build()
                 ).getMessage();
     }
 

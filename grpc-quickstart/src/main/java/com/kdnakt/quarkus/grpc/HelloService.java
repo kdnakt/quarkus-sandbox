@@ -13,7 +13,8 @@ public class HelloService extends GreeterGrpc.GreeterImplBase {
     @Override
     public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
         String name = request.getName();
-        String message = "Hello " + name;
+        int age = request.getAge();
+        String message = "Hello " + name + " (" + age + ")";
         responseObserver.onNext(HelloReply.newBuilder().setMessage(message).build());
         responseObserver.onCompleted();
     }

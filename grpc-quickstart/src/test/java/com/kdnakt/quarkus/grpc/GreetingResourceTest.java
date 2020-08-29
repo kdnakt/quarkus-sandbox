@@ -21,10 +21,10 @@ public class GreetingResourceTest {
     @Test
     public void testHelloWithNameEndpoint() {
         given()
-          .when().get("/greeting/kdnakt")
+          .when().get("/greeting/kdnakt/35")
           .then()
              .statusCode(200)
-             .body(is("Hello kdnakt"));
+             .body(is("Hello kdnakt (35)"));
     }
 
 }
