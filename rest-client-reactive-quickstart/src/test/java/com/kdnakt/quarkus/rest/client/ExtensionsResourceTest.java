@@ -25,4 +25,17 @@ public class ExtensionsResourceTest {
                 "[0].keywords", hasItem("rest-client"));
     }
 
+    @Test
+    public void testExtensionIdAsyncEndpoint() {
+        given()
+            .when().get("/extension/id-async/io.quarkus:quarkus-rest-client-reactive")
+            .then()
+            .statusCode(200)
+            .body("$.size()", is(1),
+                "[0].id", is("io.quarkus:quarkus-rest-client-reactive"),
+                "[0].name", is("REST Client Reactive"),
+                "[0].keywords.size()", greaterThan(1),
+                "[0].keywords", hasItem("rest-client"));
+    }
+
 }
