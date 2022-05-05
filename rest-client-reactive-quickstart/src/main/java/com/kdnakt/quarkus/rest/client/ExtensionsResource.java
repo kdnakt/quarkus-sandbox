@@ -19,7 +19,7 @@ public class ExtensionsResource {
     @Path("/id/{id}")
     @Blocking
     public Set<Extension> id(String id) {
-        return extensionsService.getById(id);
+        return extensionsService.getById(id, "header-value!");
     }
 
     @GET
