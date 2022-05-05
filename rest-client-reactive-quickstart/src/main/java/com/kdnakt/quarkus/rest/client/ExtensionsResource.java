@@ -1,6 +1,7 @@
 package com.kdnakt.quarkus.rest.client;
 
 import io.smallrye.common.annotation.Blocking;
+import io.smallrye.mutiny.Uni;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.ws.rs.GET;
@@ -25,6 +26,13 @@ public class ExtensionsResource {
     @Path("/id-async/{id}")
     public CompletionStage<Set<Extension>> idAsync(String id) {
         return extensionsService.getByIdAsync(id);
+    }
+
+    @GET
+    @Path("/id-uni/{id}")
+    public Uni<Set<Extension>> idUni(String id) {
+        return extensionsService.getByIdAsUni(id)
+                .onFailure().retry().atMost(10);
     }
 
 }

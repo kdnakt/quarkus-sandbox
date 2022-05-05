@@ -1,5 +1,6 @@
 package com.kdnakt.quarkus.rest.client;
 
+import io.smallrye.mutiny.Uni;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import javax.ws.rs.GET;
@@ -17,6 +18,9 @@ public interface ExtensionsService {
 
     @GET
     CompletionStage<Set<Extension>> getByIdAsync(@QueryParam("id") String id);
+
+    @GET
+    Uni<Set<Extension>> getByIdAsUni(@QueryParam("id") String id);
 
 }
 
