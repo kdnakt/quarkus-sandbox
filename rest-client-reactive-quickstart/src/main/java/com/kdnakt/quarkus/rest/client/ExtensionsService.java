@@ -1,10 +1,12 @@
 package com.kdnakt.quarkus.rest.client;
 
+import io.quarkus.rest.client.reactive.ClientExceptionMapper;
 import io.smallrye.mutiny.Uni;
 import org.eclipse.microprofile.rest.client.annotation.ClientHeaderParam;
 import org.eclipse.microprofile.rest.client.annotation.RegisterClientHeaders;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
+import javax.ws.rs.core.Response;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
@@ -28,6 +30,14 @@ public interface ExtensionsService {
 
     @GET
     Uni<Set<Extension>> getByIdAsUni(@QueryParam("id") String id);
+
+    @ClientExceptionMapper
+    static RuntimeException toException(Response response) {
+        if (response.getStatus() == 500) {
+            return new RuntimeException("The remote server responded with HTTP 500");
+        }
+        return null;
+    }
 
 }
 
