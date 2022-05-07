@@ -6,6 +6,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class GalaxyService {
@@ -35,4 +36,31 @@ public class GalaxyService {
         heroes.add(luke);
     }
 
+    public List<Film> getAllFilms() {
+        return films;
+    }
+
+    public Film getFilm(int id) {
+        return films.get(id);
+    }
+
+    public List<Hero> getHeroesByFilm(Film film) {
+        return heroes.stream()
+                .filter(hero -> hero.episodeIds.contains(film.episodeID))
+                .collect(Collectors.toList());
+    }
+
+    public void addHero(Hero hero) {
+        heroes.add(hero);
+    }
+
+    public Hero deleteHero(int id) {
+        return heroes.remove(id);
+    }
+
+    public List<Hero> getHeroesBySurname(String surname) {
+        return heroes.stream()
+                .filter(hero -> hero.surname.equals(surname))
+                .collect(Collectors.toList());
+    }
 }
