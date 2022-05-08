@@ -22,7 +22,21 @@ public class GalaxyService {
         aNewHope.episodeID = 4;
         aNewHope.director = "George Lucas";
 
+        Film theEmpireStrikesBack = new Film();
+        theEmpireStrikesBack.title = "The Empire Strikes Back";
+        theEmpireStrikesBack.releaseDate = LocalDate.of(1980, Month.MAY, 21);
+        theEmpireStrikesBack.episodeID = 5;
+        theEmpireStrikesBack.director = "George Lucas";
+
+        Film returnOfTheJedi = new Film();
+        returnOfTheJedi.title = "Return of The Jedi";
+        returnOfTheJedi.releaseDate = LocalDate.of(1983, Month.MAY, 25);
+        returnOfTheJedi.episodeID = 6;
+        returnOfTheJedi.director = "George Lucas";
+
         films.add(aNewHope);
+        films.add(theEmpireStrikesBack);
+        films.add(returnOfTheJedi);
 
         Hero luke = new Hero();
         luke.name = "Luke";
@@ -33,7 +47,26 @@ public class GalaxyService {
         luke.darkSide = false;
         luke.episodeIds.addAll(Arrays.asList(4, 5, 6));
 
+        Hero leia = new Hero();
+        leia.name = "Leia";
+        leia.surname = "Organa";
+        leia.height = 1.5;
+        leia.mass = 51;
+        leia.darkSide = false;
+        leia.episodeIds.addAll(Arrays.asList(4, 5, 6));
+
+        Hero vader = new Hero();
+        vader.name = "Darth";
+        vader.surname = "Vader";
+        vader.height = 1.9;
+        vader.mass = 89;
+        vader.darkSide = true;
+        vader.lightSaber = LightSaber.RED;
+        vader.episodeIds.addAll(Arrays.asList(4, 5, 6));
+
         heroes.add(luke);
+        heroes.add(leia);
+        heroes.add(vader);
     }
 
     public List<Film> getAllFilms() {
