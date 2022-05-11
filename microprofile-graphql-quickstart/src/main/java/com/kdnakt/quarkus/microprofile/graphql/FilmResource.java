@@ -3,6 +3,7 @@ package com.kdnakt.quarkus.microprofile.graphql;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
 import org.eclipse.microprofile.graphql.Name;
+import org.eclipse.microprofile.graphql.Mutation;
 import org.eclipse.microprofile.graphql.Source;
 import org.eclipse.microprofile.graphql.Description;
 
@@ -29,6 +30,12 @@ public class FilmResource {
 
     public List<Hero> heroes(@Source Film film) {
         return service.getHeroesByFilm(film);
+    }
+
+    @Mutation
+    public Hero createHero(Hero hero) {
+        service.addHero(hero);
+        return hero;
     }
 
 }
