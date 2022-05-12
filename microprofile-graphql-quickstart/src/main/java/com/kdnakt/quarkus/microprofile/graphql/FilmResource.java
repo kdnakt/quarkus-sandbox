@@ -1,6 +1,7 @@
 package com.kdnakt.quarkus.microprofile.graphql;
 
 import io.smallrye.graphql.api.Subscription;
+import io.smallrye.graphql.api.Context;
 import io.smallrye.mutiny.operators.multi.processors.BroadcastProcessor;
 import io.smallrye.mutiny.Multi;
 import org.eclipse.microprofile.graphql.GraphQLApi;
@@ -20,6 +21,12 @@ public class FilmResource {
     @Inject
     GalaxyService service;
 
+    /**
+     * cf: https://javadoc.io/doc/io.smallrye/smallrye-graphql-api/latest/io/smallrye/graphql/api/Context.html
+     */
+    @Inject
+    Context context;
+
     BroadcastProcessor<Hero> processor = BroadcastProcessor.create();
 
     @Query("allFilms")
@@ -31,6 +38,7 @@ public class FilmResource {
     @Query
     @Description("Get a Film from a galaxy far far away")
     public Film getFilm(@Name("filmId") int id) {
+        System.out.println(context.getOperationType()); // QUERY
         return service.getFilm(id);
     }
 
