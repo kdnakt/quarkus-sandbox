@@ -9,6 +9,7 @@ import org.eclipse.microprofile.graphql.Name;
 import org.eclipse.microprofile.graphql.Mutation;
 import org.eclipse.microprofile.graphql.Source;
 import org.eclipse.microprofile.graphql.Description;
+import org.eclipse.microprofile.graphql.DefaultValue;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -31,6 +32,11 @@ public class FilmResource {
     @Description("Get a Film from a galaxy far far away")
     public Film getFilm(@Name("filmId") int id) {
         return service.getFilm(id);
+    }
+
+    @Query
+    public List<Hero> getHeroesWithSurname(@DefaultValue("Skywalker") String surname) {
+        return service.getHeroesBySurname(surname);
     }
 
     public List<Hero> heroes(@Source Film film) {
