@@ -38,4 +38,10 @@ public class FilmResource {
         return hero;
     }
 
+    @Mutation
+    public Hero deleteHero(int id) {
+        return service.deleteHero(id);
+    }
+
+
 }
