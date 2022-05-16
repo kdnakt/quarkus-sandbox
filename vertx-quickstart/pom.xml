@@ -45,6 +45,10 @@
       <artifactId>quarkus-junit5</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+        <groupId>io.smallrye.reactive</groupId>
+        <artifactId>smallrye-mutiny-vertx-web-client</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
