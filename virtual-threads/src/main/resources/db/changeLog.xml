@@ -16,6 +16,6 @@
         </createTable>
     </changeSet>
     <changeSet author="kdnakt" id="2">
-        <loadData file="fortunes.csv" primaryKey="id" tableName="populated"/>
+        <loadData file="fortunes.csv" primaryKey="id" tableName="fortunes"/>
     </changeSet>
 </databaseChangeLog>
