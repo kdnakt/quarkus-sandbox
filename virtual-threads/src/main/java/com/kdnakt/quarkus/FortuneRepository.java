@@ -61,7 +61,7 @@ public class FortuneRepository {
 
     private List<Fortune> createListOfFortunes(RowSet<Row> rows) {
         List<Fortune> fortunes = new ArrayList<>();
-        rows.forEach(row -> fortunes.add(new Fortune(row.getString(1))));
+        rows.forEach(row -> fortunes.add(new Fortune(row.getString(0))));
         return fortunes;
     }
 
