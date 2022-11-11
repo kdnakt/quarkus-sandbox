@@ -43,7 +43,6 @@ public class FortuneRepository {
 
     private Fortune create(ResultSet rs) throws SQLException {
         String title = rs.getString(1);
-        System.out.println("LOADED: " + title);
         return new Fortune(title);
     }
 
