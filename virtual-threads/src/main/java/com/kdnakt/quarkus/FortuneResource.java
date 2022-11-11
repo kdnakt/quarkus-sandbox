@@ -14,8 +14,8 @@ import io.smallrye.mutiny.Uni;
 @Path("")
 public class FortuneResource {
 
-    private static final Logger LOG = Logger.getLogger(FortuneResource.class);
-
+    @Inject
+    Logger LOG;
     @Inject
     FortuneRepository repo;
     
