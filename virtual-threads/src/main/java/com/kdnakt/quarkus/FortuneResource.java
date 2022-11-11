@@ -23,14 +23,14 @@ public class FortuneResource {
     @Path("/blocking")
     public Fortune blocking() {
         var list = repo.findAllBlocking();
-        LOG.infof("listed: %s", list);
+        LOG.info("BLOCKING REQUEST!");
         return pickOne(list);
     }
 
     @GET
     @Path("/reactive")
     public Uni<Fortune> reactive() {
-        LOG.info("called reactive");
+        LOG.info("REACTIVE REQUEST!");
         return repo.findAllAsync()
                 .map(this::pickOne);
     }
@@ -40,7 +40,7 @@ public class FortuneResource {
     @RunOnVirtualThread
     public Fortune virtualThread() {
         var list = repo.findAllAsyncAndAwait();
-        LOG.infof("listed: %s", list);
+        LOG.info("VIRTUAL THREAD REQUEST!");
         return pickOne(list);
     }
 
