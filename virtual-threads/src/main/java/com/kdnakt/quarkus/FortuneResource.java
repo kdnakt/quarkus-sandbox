@@ -48,4 +48,28 @@ public class FortuneResource {
         return list.get(0);
     }
 
+    public Uni<List<String>> getQuotesAsync(int size) {
+        return Uni.createFrom().item(List.of(
+            "Quote 1",
+            "Quote 2",
+            "Quote 3"
+        ));
+    }
+
+    @GET
+    @Path("/quoted-blocking")
+    public List<Fortune> getAllQuotedBlocking() {
+        // we get the list of fortunes
+        var fortunes = repo.findAllBlocking();
+
+        // we get the list of quotes
+        var quotes = getQuotesAsync(fortunes.size()).await().indefinitely();
+
+        // we append each quote to each fortune
+        for (int i = 0; i < fortunes.size(); i++) {
+            fortunes.get(i).title += " - " + quotes.get(i);
+        }
+        return fortunes;
+    }
+
 }
