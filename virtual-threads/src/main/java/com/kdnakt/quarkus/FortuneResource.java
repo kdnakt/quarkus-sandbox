@@ -72,4 +72,27 @@ public class FortuneResource {
         return fortunes;
     }
 
+    @GET
+    @Path("/quoted-reactive")
+    public Uni<List<Fortune>> getAllQuoted() {
+        // we first fetch the list of resource and we memoize it
+        // to avoid fetching it again everytime need it
+        var fortunes = repo.findAllAsync().memoize().indefinitely();
+
+        // once we get a result for fortunes,
+        // we know its size and can thus query the right number of quotes
+        var quotes = fortunes.onItem().transformToUni(list -> getQuotesAsync(list.size()));
+
+        // we now need to combine the two reactive streams
+        // before returning the result to the user
+        return Uni.combine().all().unis(fortunes,quotes).asTuple().onItem().transform(tuple -> {
+            var todoList=tuple.getItem1();
+            //can await it since it is already resolved
+            var quotesList = tuple.getItem2();
+            for(int i=0; i  < todoList.size();i ++){
+                            todoList.get(i).title+= "   -  "+quotesList.get(i);
+            }
+            return todoList;
+        });
+    }
 }
