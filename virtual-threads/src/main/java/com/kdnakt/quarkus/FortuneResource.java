@@ -74,7 +74,7 @@ public class FortuneResource {
 
     @GET
     @Path("/quoted-reactive")
-    public Uni<List<Fortune>> getAllQuoted() {
+    public Uni<List<Fortune>> getAllQuotedReactive() {
         // we first fetch the list of resource and we memoize it
         // to avoid fetching it again everytime need it
         var fortunes = repo.findAllAsync().memoize().indefinitely();
