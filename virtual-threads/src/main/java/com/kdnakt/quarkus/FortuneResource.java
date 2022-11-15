@@ -95,4 +95,21 @@ public class FortuneResource {
             return todoList;
         });
     }
+
+    @GET
+    @RunOnVirtualThread
+    @Path("/quoted-virtual-thread")
+    public List<Fortune> getAllQuotedVirtualThread() {
+        //we get the list of fortunes
+        var fortunes = repo.findAllAsyncAndAwait();
+
+        //we get the list of quotes
+        var quotes = getQuotesAsync(fortunes.size()).await().indefinitely();
+
+        //we append each quote to each fortune
+        for(int i=0; i  < fortunes.size();i ++){
+            fortunes.get(i).title+= "   -  "+quotes.get(i);
+        }
+        return fortunes;
+    }
 }
